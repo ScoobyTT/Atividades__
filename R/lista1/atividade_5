@@ -1,0 +1,48 @@
+
+#recebe o valor do usuario
+nota <- readline(prompt = "Informe sua nota")
+nota <- as.numeric(nota)
+
+#recebe a segunda nota
+nota_2 <- readline(prompt = "informe a segunda nota")
+nota <- as.numeric(nota_2)
+
+#verifica se a informacao é valida
+if (is.na(nota) | nota > 10 & (is.na(nota_2) | nota > 10))
+  print("Informação inválida")
+  else{
+    
+    if (nota < 10 && nota >= 9)
+    variavel <- c(nota, nota_2)
+    #calculando a media
+    media_aluno <- mean(variavel)
+    #printando a media
+    cat("Você foi reprovado! Sua media foi de : ", media_aluno, "\n")
+    
+    #calculando a media do aluno
+    if (nota >= 9 && nota < 10)
+      variavel <- c(nota, nota_2)
+    media_aluno(variavel)
+    if (nota >= 7.5 && nota < 9)
+    variavel <- c(nota, nota_2)
+    media_aluno <- mean(variavel)
+    if (nota >= 6 && nota < 7.5)
+    variavel <- c(nota, nota_2)
+    media_aluno <- mean(variavel)
+    if (nota >= 4 && nota < 7.5)
+    variavel <- c(nota, nota_2)
+    media_aluno <- mean(variavel)
+    if (nota >= 0 && nota < 4)
+    variavel <- c(nota, nota_2)
+    media_aluno <- mean(variavel)
+    
+    #printando a media do aluno caso aprovado
+    if(media_aluno > 6)
+    cat("Você está aprovado! Sua mádia foi de: ", media_aluno, "\n")
+    
+    
+    #printando a media do aluno caso reprovado
+    if (media_aluno < 6)
+      cat("Você foi reprovado! Sua média foi de: ", media_aluno, "\n")
+    
+  }
