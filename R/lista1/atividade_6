@@ -1,0 +1,20 @@
+
+#gera os números aleatórios do triangulo
+lado_1 <- runif(1, min = 0, max = 50)
+lado_2 <- runif(1, min = 0, max = 50)
+lado_3 <- runif(1, min = 0, max = 50)
+
+#condição pro programa gerar o cálculo
+if ((lado_1 + lado_2 > lado_3) | (lado_1 + lado_3 > lado_2) | (lado_3 + lado_2 > 1))
+  
+  
+  
+  if(lado_1 == 2 & lado_1 == lado_3){
+     print("Esses lados formam um: Triângulo equilátero")
+  }
+  if ((lado_1 == lado_2) | (lado_1 == lado_3)){
+    print("Esses lados formam um: Triângulo isósceles")
+  }else if (lado_1 != lado_2 & lado_1 != lado_3){
+  print("Esses lados formam um: Triângulo equilátero")
+}else
+  print("lados gerados não formam um triâgulo, por favor tente novamente.")
