@@ -1,0 +1,34 @@
+#Faça um programa que receba três números aleatórios e mostre-os em ordem decrescente.
+
+# Pedindo o valor ao usuário 
+print("Preciso que você informe os três valores desejados")
+
+# Recebendo os valores
+v1 <- readline(prompt = "Digite o primeiro valor (precisa ser um número): ")
+v1 <- as.numeric(v1)
+v2 <- readline(prompt = "Digite o segundo valor: ")
+v2 <- as.numeric(v2)
+v3 <- readline(prompt = "Digite o último valor: ")
+v3 <- as.numeric(v3)
+
+
+# Verificando se as entradas são válidas (numéricas)
+if (is.na(v1) | is.na(v2) || is.na(v3)) {
+  print("Por favor, insira apenas números válidos.")
+} else {
+  # Verificando e imprimindo os valores em ordem decrescente
+  if (v1 >= v2 && v2 >= v3)
+    cat(v1, v2, v3, "\n")
+  
+  if (v1 >= v3 && v3 >= v2)
+    cat(v1, v3, v2, "\n")
+  
+  if (v2 >= v1 && v1 >= v3)
+    cat(v2, v1, v3, "\n")
+  
+  if (v2 >= v3 && v3 >= v1)
+    cat(v2, v3, v1, "\n")
+  
+  if (v3 >= v1 && v1 >= v2)
+    cat(v3, v1, v2, "\n")
+}
