@@ -1,0 +1,39 @@
+#função que força a parada do código
+forca_parada <- function(){
+  #gera os números aleatórios dos coeficientes
+a <- runif(1, min = 0, max= 1000)
+
+#verificando se o a é ZERO
+if (a == 0){
+  print("Número gerado do A=0 (não é uma equação do segundo grau).")
+return() #se atingir a condição o código se encerra
+}else{
+b <- runif(1, min = 0, max = 1000)
+c <- runif(1, min = 0, max = 1000)
+
+#condição do programa efetuar o incio da operação.
+  delta <- (b^2) - (4 * a * c)  #cálculo do delta
+  
+  if(delta < 0){
+    print("Delta negativo. A equação não possui raizes reais.")
+  return() #se atingir a condição o código encerra
+    
+  }  else if (delta == 0){
+    cat("Delta = a 0. A equação possui uma raiz real.")
+  return() #se tingir a condição o código encerra
+    
+  }  else
+    #calcula a raiz de delta
+    raiz_delta <- sqrt(delta) #cálculo da raiz de delt 
+    cat("O delta: ",delta, ". A esquação possui duas (+-) raizes reais .")
+  return() 
+  }
+    
+
+}
+
+
+
+ 
+#chamando a função
+forca_parada()
