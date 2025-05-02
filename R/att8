@@ -1,0 +1,23 @@
+#recebe o ano desejado eplo usário
+ano <- readline(prompt = "Informe o ano desejado")
+ano <- as.numeric(ano)
+#verificando se a informação é válida
+if(is.na(ano) | ano < 0){
+  print("Informação inválida, por favor tente novamente.")
+  }else{
+  
+  x <- FALSE###
+  
+  #verifica se o ano é bissexto
+  if ((ano %% 4 == 0 && ano %% 100 != 0) || (ano %% 400 == 0)) {
+    x <- TRUE
+  }
+
+#imprimindo a informação
+if (x ==  TRUE)
+print("Ano bissexto (possui 366 dias).")
+else{
+print("Ano não bissexto (possui 365 dias).")}
+
+}
+ 
