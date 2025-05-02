@@ -1,0 +1,33 @@
+#Faça um programa que recebe o salário aleatórios entre 100 e 10.000 de um colaborador e o reajuste segundo o seguinte critério, baseado no salário atual;
+#As organizações CSM resolveram dar um aumento de salário aos seus colaboradores e lhe contrataram para desenvolver o programa que calculará os reajustes. 
+
+#pedindo o valor ao usuário
+salario <- readline(prompt = "Informe o valor do seu salário: ")
+salario <- as.numeric(variavel)
+
+#verificando se a entrada é valida
+if(is.na(salario) || salario < 100 || salario > 10000){
+  print("Valor inválido, reinicie o programa")
+}else{
+#calculando reajuste de acordo com o salário
+  if(salario < 280)
+    persentual <- 20
+  if(salario >= 280 && salario < 700)
+      persentual <- 15
+  if(salario >= 700 && salario >= 1500)
+    persentual <- 10
+  if(salario >= 1500)
+    persentual <- 5
+  
+  #calculo do salario
+  valor_acresct <- salario * persentual/100 - salario
+  acrescimo <- salario * persentual/100
+  novo_salario <- salario + acrescimo
+  
+  #exibição do salario
+  cat("Salário antes do reajuste")
+  cat("Persentual de aumento aplicado", persentual, "%")
+  cat("Valor acrescentado: ", valor_acresct)
+  cat("Novo salário após o aumento: ", novo_salario)
+}
+    
