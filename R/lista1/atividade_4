@@ -1,0 +1,26 @@
+# Recebe o número do usuário
+aleatorio <- readline(prompt = "Digite um número entre 1 e 11")
+aleatorio <- as.numeric(aleatorio)
+
+# Verifica se o número é válido
+if (is.na(aleatorio) || aleatorio < 1 | aleatorio > 11) {
+  print("Informação inválida. Por favor, tente novamente.")
+} else {
+  # Usa o número inserido pelo usuário no switch
+  mensagem <- switch(as.character(aleatorio),
+                     "1" = "O dia da semana correspondente é: Domingo",
+                     "2" = "O dia da semana correspondente é: Segunda",
+                     "3" = "O dia da semana correspondente é: Terça",
+                     "4" = "O dia da semana correspondente é: Quarta",
+                     "5" = "O dia da semana correspondente é: Quinta",
+                     "6" = "O dia da semana correspondente é: Sexta",
+                     "7" = "O dia da semana correspondente é: Sábado",
+                     "8" = "O dia da semana correspondente é: Segunda",
+                     "9" = "O dia da semana correspondente é: Terça",
+                     "10" = "O dia da semana correspondente é: Quarta",
+                     "11" = "O dia da semana correspondente é: Quinta"
+  )
+  
+  # Exibe a mensagem
+  print(mensagem)
+}
