@@ -1,0 +1,44 @@
+
+#recebe o valor de horas do funcionário
+horas <- readline(prompt = "informe o valor de horas trabalhadas")
+horas <- as.numeric(horas)
+
+#recebe valor da hora trabalhada
+trab <- readline(prompt = "Informe o número de horas trabalhadas no mês")
+trab <- as.numeric(trab)
+
+#rerica se os valores são validos
+if (is.na(horas) | is.na(trab)) {
+  print("Informação inválida. Por favor, tente novamente.")
+} else{
+  
+  #calculo do salario bruto
+  salario_bruto <- horas * trab
+  
+  #calculo do imposto de renda
+    if(salario_bruto <= 900)
+      ir <- 0 #Nesse caso está insent v o
+    else if(salario_bruto > 900 && salario_bruto <= 1500)
+        ir <- 5 / 100 * salario_bruto #5% de imposto
+    else if(salario_bruto > 1500 && salario_bruto <= 2500)
+      ir <- 10 / 100 * salario_bruto #10% de imposto
+    else {
+      ir <- 20 / 100 * salario_bruto #20% de imposto
+    }
+    
+    
+    #calculo do sindicato
+    sindicato <- 3 / 100 * salario_bruto #3% do sindicato
+    
+    #calculo do salario liquido
+    salario_liq <- salario_bruto - ir - sindicato
+    
+    
+    
+    
+    # Exibição dos resultados
+    cat("Salário Bruto: R$", salario_bruto, "\n")
+    cat("Desconto IR: R$", ir, "\n")
+    cat("Desconto Sindicato: R$", sindicato, "\n")
+    cat("Salário Líquido: R$", salario_liq, "\n")
+}
