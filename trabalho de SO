@@ -82,10 +82,11 @@ void exibir_processos() {
         double memoria_mb = proc.memoria_kb / 1024.0;
         cout << left << setw(10) << proc.id
              << left << setw(30) << proc.nome
-             << fixed << setprecision(2) << memoria_mb << endl;
+             << fixed << setprecision(2) << memoria_mb << endl
+             << "______________________________________________" << endl<< endl;
     }
 
-    cout << "----------------------------------------------------" << endl;
+    cout << "*****************************************************" << endl;
 }
 
 void encerrar_processo() {
