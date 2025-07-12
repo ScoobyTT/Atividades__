@@ -1,0 +1,136 @@
+#include <string>
+#include <vector>
+#include <iomanip>      // setw, left, setprecision
+#include <dirent.h>     // Manipulação de diretórios
+#include <unistd.h>     // usleep()
+#include <iostream>
+
+#include <fstream>
+#include <csignal>      // kill()
+#include <algorithm>    // std::sort
+
+
+using namespace std;
+
+struct Processo {
+    int id;
+    string nome;
+    long memoria_kb;
+};
+
+bool eh_pid_valido(const string& texto) {
+    return !texto.empty() && all_of(texto.begin(), texto.end(), ::isdigit);
+}
+
+Processo obter_info_processo(const string& pid_str) {
+    Processo proc = {0, "Desconhecido", 0};
+    proc.id = stoi(pid_str);
+
+    ifstream arquivo_status("/proc/" + pid_str + "/status");
+
+    if (arquivo_status.is_open()) {
+        string linha;
+        while (getline(arquivo_status, linha)) {
+            if (linha.rfind("Name:", 0) == 0) {
+                proc.nome = linha.substr(6);
+            } else if (linha.rfind("VmRSS:", 0) == 0) {
+                proc.memoria_kb = stol(linha.substr(7, linha.find("kB") - 7));
+            }
+        }
+        arquivo_status.close();
+    }
+
+    return proc;
+}
+
+void exibir_processos() {
+    DIR* pasta = opendir("/proc");
+    if (pasta == nullptr) {
+        cerr << "Falha ao abrir /proc." << endl;
+        return;
+    }
+
+    vector<Processo> lista_procs;
+    struct dirent* item;
+
+    while ((item = readdir(pasta)) != nullptr) {
+        if (item->d_type == DT_DIR) {
+            string nome_dir = item->d_name;
+            if (eh_pid_valido(nome_dir)) {
+                lista_procs.push_back(obter_info_processo(nome_dir));
+            }
+        }
+    }
+
+    closedir(pasta);
+
+    sort(lista_procs.begin(), lista_procs.end(), [](const Processo& a, const Processo& b) {
+        return a.id > b.id;
+    });
+
+    system("clear");
+
+    cout << "====================================================\n"
+         << "   VISUALIZADOR DE PROCESSOS - SISTEMA EM C++\n"
+         << "====================================================\n"
+         << left << setw(10) << "PID"
+         << setw(30) << "NOME DO PROCESSO"
+         << setw(15) << "USO MEM (MB)" << endl;
+    cout << "----------------------------------------------------" << endl;
+
+    for (const auto& proc : lista_procs) {
+        double memoria_mb = proc.memoria_kb / 1024.0;
+        cout << left << setw(10) << proc.id
+             << left << setw(30) << proc.nome
+             << fixed << setprecision(2) << memoria_mb << endl;
+    }
+
+    cout << "----------------------------------------------------" << endl;
+}
+
+void encerrar_processo() {
+    int id_proc;
+    cout << "Informe o PID a ser encerrado: ";
+    cin >> id_proc;
+
+    if (kill(id_proc, SIGTERM) == 0) {
+        cout << "Processo encerrado com sucesso (SIGTERM enviado)." << endl;
+    } else {
+        perror("Erro ao tentar matar o processo");
+        cerr << "Verifique o PID e as permissoes de acesso." << endl;
+    }
+
+    usleep(2000000); // Espera 2 segundos
+}
+
+int main() {
+    char escolha;
+
+    while (true) {
+        exibir_processos();
+
+        cout << "\nMenu: [a] Atualizar | [e] Encerrar processo | [s] Sair" << endl;
+        cout << "Escolha: ";
+        cin >> escolha;
+
+        switch (escolha) {
+            case 'a':
+            case 'A':
+                continue;
+            case 'e':
+            case 'E':
+                encerrar_processo();
+                break;
+            case 's':
+            case 'S':
+                cout << "Encerrando programa..." << endl;
+                return 0;
+            default:
+                cout << "Entrada invalida. Tente novamente." << endl;
+                usleep(1000000);
+                break;
+        }
+    }
+
+    return 0;
+}
