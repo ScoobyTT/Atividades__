@@ -1,0 +1,19 @@
+#include <iostream>
+
+int main() {
+    using namespace std;
+
+    int pescTotal, tempRest, tempoTotal, pescados = 0;
+    cin >> pescTotal >> tempoTotal;
+
+    for (int i = 0; i < pescTotal; i++) {
+        cin >> tempRest;
+        tempoTotal -= tempRest;
+        if (tempoTotal >= 0) {
+            pescados++;
+        }
+    }
+
+    cout << pescados;
+    return 0;
+}
