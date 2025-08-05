@@ -1,3 +1,111 @@
+//Problema: Em busca da esmeralda
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n; 
+    cin >> n;
+
+    int valor;
+    bool achou = false;
+
+    int c; 
+    int caixas[n];
+
+    for (int i = 0; i < n; i++) {
+        cin >> caixas[i];
+    }
+
+    cin >> c;
+
+    for (int i = 0; i < n; i++) {
+        if (caixas[i] == c) {
+            cout << c << endl;
+            return 0;
+        }
+    }
+
+    cout << -1 << endl;
+    return 0;
+}
+
+__________________________________________________________
+//HOSPESDAGEM
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    int n; // número de amigos
+    cin >> n;
+
+    string tipo;
+    int total = 0;
+
+    while (true) {
+        cin >> tipo;
+
+        if (tipo == "FIM") break;
+
+        if (tipo == "Casal") total += 2;
+        else if (tipo == "Triplo") total += 3;
+        else if (tipo == "Quadruplo") total += 4;
+        else if (tipo == "Familia") total += 5;
+    }
+
+    if (total >= n) {
+        cout << "Pode reservar! Esses quartos cabem todos." << endl;
+    } else {
+        cout << "Procure outra pousada." << endl;
+    }
+
+    return 0;
+}
+
+________________________________________
+//AVATAR: HABILIDADES DOS DOBRADORES
+#include <iostream>
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+
+    int habilidades[N];
+    int identificadores[N];
+    int Y;
+
+    for (int i = 0; i < N; i++) {
+        cin >> habilidades[i];
+    }
+
+    for (int i = 0; i < N; i++) {
+        cin >> identificadores[i];
+    }
+
+    cin >> Y;
+
+    bool encontrou = false;
+
+    for (int i = 0; i < N; i++) {
+        if (habilidades[i] == Y) {
+            if (encontrou) cout << " ";
+            cout << identificadores[i];
+            encontrou = true;
+        }
+    }
+
+    if (!encontrou) {
+        cout << "Nenhum";
+    }
+
+    cout << endl;
+
+    return 0;
+}
+
+____________________________________________________________
+//PESCARIA
 #include <iostream>
 
 int main() {
