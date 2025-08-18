@@ -125,3 +125,52 @@ int main() {
     cout << pescados;
     return 0;
 }
+
+____________________________________________________________
+//CAPITAL DA GALAXIA
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <map>
+using namespace std;
+
+struct sistema {
+    string planeta;
+    int populacao;
+};
+
+// Função principal
+int main() {
+    int n;
+    cin >> n;
+
+    map<string, sistema> sistemas;
+
+    string sistema_capital{0};
+    int maxPopulacao = -1;
+
+    for (int i = 0; i < n; ++i) {
+        string nomeSistema, nomePlaneta;
+        int populacao;
+        cin >> nomeSistema >> nomePlaneta >> populacao;
+
+        if (sistemas.find(nomeSistema) == sistemas.end() || populacao > sistemas[nomeSistema].populacao) {
+            sistemas[nomeSistema] = {nomePlaneta, populacao};
+        }
+
+        if (populacao > maxPopulacao) {
+            maxPopulacao = populacao;
+            sistema_capital = nomeSistema;
+        }
+    }
+
+    cout << sistema_capital << " " << maxPopulacao << endl;
+
+    for (const auto& [nome, dados] : sistemas) {
+        cout << nome << " " << dados.populacao << endl;
+    }
+
+    return 0;
+}
